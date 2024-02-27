@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-const favoritesSchema = new mongoose.Schema({
+const favoritesSchema = new Schema({
   id: String,
   description: String,
   alt_description: String,
@@ -25,4 +25,4 @@ const favoritesSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-module.exports = mongoose.model('favorites', favoritesSchema);
+export default model('favorites', favoritesSchema);

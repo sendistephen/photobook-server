@@ -1,5 +1,5 @@
-var jwt = require('express-jwt');
-var jwks = require('jwks-rsa');
+import { expressjwt as jwt } from 'express-jwt';
+import jwks from 'jwks-rsa';
 
 const jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
@@ -13,6 +13,4 @@ const jwtCheck = jwt({
   algorithms: ['RS256'],
 });
 
-module.exports = {
-  jwtCheck,
-};
+export { jwtCheck };

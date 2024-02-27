@@ -1,19 +1,19 @@
-const express = require('express');
-const router = express.Router();
-const { jwtCheck } = require('../middleware/jwtCheck');
-const {
+import { Router } from 'express';
+
+import {
   savePhoto,
   getAllSavedPhotos,
   deletePhoto,
-} = require('../controllers/favorites');
+} from '../controllers/favorites.js';
+
+const router = Router();
+// api/v1/photos/favorites
+router.post('/', savePhoto);
 
 // api/v1/photos/favorites
-router.post('/photos/favorites', jwtCheck, savePhoto);
+router.get('/', getAllSavedPhotos);
 
 // api/v1/photos/favorites
-router.get('/photos/favorites', jwtCheck, getAllSavedPhotos);
+router.delete('/:id', deletePhoto);
 
-// api/v1/photos/favorites
-router.delete('/photos/favorites/:id', jwtCheck, deletePhoto);
-
-module.exports = router;
+export default router;

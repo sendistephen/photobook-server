@@ -1,6 +1,6 @@
-const Favorites = require('../model/Favorites');
+import Favorites from '../model/Favorites.js';
 
-exports.savePhoto = async (req, res) => {
+export async function savePhoto(req, res) {
   // check if photo exists
   let foundPhoto = await Favorites.findOne({ id: req.body.id });
 
@@ -26,16 +26,16 @@ exports.savePhoto = async (req, res) => {
     }
     return res.json({ success: true, result });
   });
-};
-exports.getAllSavedPhotos = async (req, res) => {
+}
+export async function getAllSavedPhotos(req, res) {
   const data = await Favorites.find({ user_id: req.user.sub });
   if (!data) {
     return res.status(400).json({ msg: 'No data found' });
   }
   return res.json(data);
-};
+}
 // remove favorite photo
-exports.deletePhoto = async (req, res) => {
+export async function deletePhoto(req, res) {
   const foundPhoto = await Favorites.findOneAndRemove({
     id: req.params.id,
     user_id: req.user.sub,
@@ -44,4 +44,4 @@ exports.deletePhoto = async (req, res) => {
     return res.status(400).json({ msg: 'Resource not found!' });
   }
   return res.json({ id: foundPhoto.id });
-};
+}
