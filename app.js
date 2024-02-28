@@ -19,6 +19,9 @@ app.use(json());
 app.use(cors());
 
 // application routes
+app.get('/', (req, res) => {
+  res.send('Welcome to photobook..... ');
+});
 app.use('/api/v1/photos/favorites', jwtCheck, favoritesRouter);
 
 const PORT = process.env.PORT || 9000;
