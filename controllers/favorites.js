@@ -1,6 +1,7 @@
 import Favorites from '../model/Favorites.js';
 
 export async function savePhoto(req, res) {
+  console.log(req.headers);
   // check if photo exists
   let foundPhoto = await Favorites.findOne({ id: req.body.id });
 
